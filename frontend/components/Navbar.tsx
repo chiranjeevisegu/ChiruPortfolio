@@ -35,7 +35,7 @@ export default function Navbar() {
                     }
                 });
             },
-            { threshold: 0.5 } // Trigger when 50% of the section is visible
+            { rootMargin: '-40% 0px -40% 0px' }
         );
 
         navItems.forEach((item) => {
@@ -44,21 +44,21 @@ export default function Navbar() {
         });
 
         return () => observer.disconnect();
-    }, []);
+    }, [navItems]);
 
     return (
         <motion.nav
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="fixed top-0 left-0 w-full z-50 flex justify-center pt-4 pointer-events-none px-4"
+            className="fixed top-0 left-0 w-full z-50 flex justify-end md:justify-center pt-4 pointer-events-none px-4"
         >
             <motion.div
                 layout
-                className="pointer-events-auto bg-black/60 backdrop-blur-xl border border-white/10 rounded-[2rem] px-6 py-3 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 shadow-2xl relative max-w-full md:max-w-max mx-auto"
+                className="pointer-events-auto bg-black/60 backdrop-blur-xl border border-white/10 rounded-[2rem] px-6 py-3 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 shadow-2xl relative max-w-[90vw] md:max-w-max mx-auto md:mx-0"
             >
                 {/* Mobile Header (Label + Toggle) */}
-                <div className="flex md:hidden items-center justify-between w-full min-w-[250px]">
+                <div className="flex md:hidden items-center justify-between w-full min-w-[140px]">
                     <span className="text-white font-bold text-sm tracking-widest uppercase text-primary ml-2">
                         {navItems.find(n => n.id === activeSection)?.label || "Menu"}
                     </span>
